@@ -64,63 +64,87 @@
       <div class="container">
         <div class="hero-split-layout">
 
-          <!-- LEFT COLUMN: Project Carousel & Preview (Digital Receipt prioritized) -->
+          <!-- LEFT COLUMN: Project Stream (FlowMarqueeCarousel matching localhost Next.js) -->
           <div class="hero-carousel-col">
-            <div class="carousel-card-container" id="projectCarousel">
-              <!-- Top Main Card / Viewport -->
-              <div class="carousel-viewport">
-                <div class="carousel-track" id="carouselTrack">
-                  <!-- Slide 1: Digital Receipt (Flagship Experiment - 65-70% visual prominence) -->
-                  <div class="carousel-slide active" data-index="0" data-next-img="assets/images/project_aerform.png">
-                    <a href="digital-receipt.html" class="carousel-slide-link" aria-label="View Digital Receipt Case Study" style="--slide-bg: url('../assets/images/project_digital_receipt.png');">
-                      <span class="carousel-browser-frame">
-                        <img src="assets/images/project_digital_receipt.png" alt="Digital Receipt — A receipt for where your day actually went" class="carousel-screen-img">
-                      </span>
-                    </a>
-                  </div>
-
-                  <!-- Slide 2: AERFORM -->
-                  <div class="carousel-slide" data-index="1" data-next-img="assets/images/project_nomad.png">
-                    <a href="#workSection" class="carousel-slide-link" aria-label="View AERFORM Project" style="--slide-bg: url('../assets/images/project_aerform.png');">
-                      <span class="carousel-browser-frame">
-                        <img src="assets/images/project_aerform.png" alt="AERFORM — Interactive Performance Footwear Storefront" class="carousel-screen-img">
-                      </span>
-                    </a>
-                  </div>
-
-                  <!-- Slide 3: NOMAD -->
-                  <div class="carousel-slide" data-index="2" data-next-img="assets/images/project_digital_receipt.png">
-                    <a href="#workSection" class="carousel-slide-link" aria-label="View NOMAD Project" style="--slide-bg: url('../assets/images/project_nomad.png');">
-                      <span class="carousel-browser-frame">
-                        <img src="assets/images/project_nomad.png" alt="NOMAD — Bespoke Luxury Travel Designer" class="carousel-screen-img">
-                      </span>
-                    </a>
-                  </div>
-                </div>
+            <div class="flow-marquee-container" id="projectCarousel">
+              <div class="flow-marquee-header">
+                <span class="flow-marquee-title">Selected Work Preview</span>
+                <span class="flow-marquee-hint">Hover to pause</span>
               </div>
+              <div class="flow-marquee-viewport" id="flowMarqueeViewport">
+                <div class="flow-marquee-track" id="flowMarqueeTrack">
+                  <!-- Group 1: 6 Projects -->
+                  <a href="digital-receipt.html" class="flow-slide-card featured" aria-label="View Digital Receipt Case Study">
+                    <div class="flow-card-inner">
+                      <img src="assets/images/project_digital_receipt.png" alt="Digital Receipt — Temporal Awareness Tool" class="flow-card-img">
+                      <div class="flow-badge">
+                        <span class="flow-badge-dot"></span>
+                        Featured Experiment
+                      </div>
+                    </div>
+                  </a>
+                  <a href="aerform.html" class="flow-slide-card" aria-label="View AERFORM Case Study">
+                    <div class="flow-card-inner">
+                      <img src="assets/images/project_aerform.png" alt="AERFORM — Adaptive Movement Lab" class="flow-card-img">
+                    </div>
+                  </a>
+                  <a href="nomad.html" class="flow-slide-card" aria-label="View NOMAD Case Study">
+                    <div class="flow-card-inner">
+                      <img src="assets/images/project_nomad.png" alt="NOMAD — Architectural Travel System" class="flow-card-img">
+                    </div>
+                  </a>
+                  <a href="#workSection" class="flow-slide-card" aria-label="View Absenin Platform">
+                    <div class="flow-card-inner">
+                      <img src="assets/images/project_absenin.png" alt="Absenin — Attendance Platform" class="flow-card-img">
+                    </div>
+                  </a>
+                  <a href="#workSection" class="flow-slide-card" aria-label="View Kalanara Store">
+                    <div class="flow-card-inner">
+                      <img src="assets/images/project_kalanara.png" alt="Kalanara — Natural Living Goods" class="flow-card-img">
+                    </div>
+                  </a>
+                  <a href="#workSection" class="flow-slide-card" aria-label="View Termul AI Terminal">
+                    <div class="flow-card-inner">
+                      <img src="assets/images/project_termul.png" alt="Termul — AI Terminal Interface" class="flow-card-img">
+                    </div>
+                  </a>
 
-              <!-- Centered Indicator Dots & Nav Controls -->
-              <div class="carousel-dots-row">
-                <button class="carousel-arrow prev" id="carouselPrevBtn" aria-label="Previous slide">
-                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                    <polyline points="15 18 9 12 15 6"></polyline>
-                  </svg>
-                </button>
-                <div class="carousel-dots-wrap" id="carouselDots">
-                  <button class="c-dot active" data-index="0" aria-label="Slide 1"></button>
-                  <button class="c-dot" data-index="1" aria-label="Slide 2"></button>
-                  <button class="c-dot" data-index="2" aria-label="Slide 3"></button>
+                  <!-- Group 2: Clones for 100% seamless infinite vertical loop -->
+                  <a href="digital-receipt.html" class="flow-slide-card featured" aria-label="View Digital Receipt Case Study" aria-hidden="true">
+                    <div class="flow-card-inner">
+                      <img src="assets/images/project_digital_receipt.png" alt="Digital Receipt — Temporal Awareness Tool" class="flow-card-img">
+                      <div class="flow-badge">
+                        <span class="flow-badge-dot"></span>
+                        Featured Experiment
+                      </div>
+                    </div>
+                  </a>
+                  <a href="aerform.html" class="flow-slide-card" aria-label="View AERFORM Case Study" aria-hidden="true">
+                    <div class="flow-card-inner">
+                      <img src="assets/images/project_aerform.png" alt="AERFORM — Adaptive Movement Lab" class="flow-card-img">
+                    </div>
+                  </a>
+                  <a href="nomad.html" class="flow-slide-card" aria-label="View NOMAD Case Study" aria-hidden="true">
+                    <div class="flow-card-inner">
+                      <img src="assets/images/project_nomad.png" alt="NOMAD — Architectural Travel System" class="flow-card-img">
+                    </div>
+                  </a>
+                  <a href="#workSection" class="flow-slide-card" aria-label="View Absenin Platform" aria-hidden="true">
+                    <div class="flow-card-inner">
+                      <img src="assets/images/project_absenin.png" alt="Absenin — Attendance Platform" class="flow-card-img">
+                    </div>
+                  </a>
+                  <a href="#workSection" class="flow-slide-card" aria-label="View Kalanara Store" aria-hidden="true">
+                    <div class="flow-card-inner">
+                      <img src="assets/images/project_kalanara.png" alt="Kalanara — Natural Living Goods" class="flow-card-img">
+                    </div>
+                  </a>
+                  <a href="#workSection" class="flow-slide-card" aria-label="View Termul AI Terminal" aria-hidden="true">
+                    <div class="flow-card-inner">
+                      <img src="assets/images/project_termul.png" alt="Termul — AI Terminal Interface" class="flow-card-img">
+                    </div>
+                  </a>
                 </div>
-                <button class="carousel-arrow next" id="carouselNextBtn" aria-label="Next slide">
-                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                    <polyline points="9 18 15 12 9 6"></polyline>
-                  </svg>
-                </button>
-              </div>
-
-              <!-- Second Card Peek -->
-              <div class="carousel-peek-card" id="carouselPeekCard" title="Click to view next project">
-                <img src="assets/images/project_aerform.png" alt="Next Project Preview" id="peekImg" class="carousel-screen-img">
               </div>
             </div>
           </div>
@@ -194,58 +218,85 @@
       </div>
     </section>
 
-    <!-- 3. WORKED WITH TEAMS ACROSS (Restrained Monochrome Logo Strip) -->
+    <!-- 3. WORKED WITH TEAMS ACROSS (Infinite Smooth Brand Ticker) -->
     <section class="brands-marquee-section reveal" aria-label="Worked with teams across">
-      <div class="container">
-        <div class="framer-lha1us" data-framer-appear-id="lha1us" data-framer-name="Clients logos">
-          <div class="framer-1w986xf" data-framer-name="Worked with teams across" data-framer-component-type="RichTextContainer">
-            <p class="framer-text framer-styles-preset-1if0pqq" data-styles-preset="uCKqSkXys" dir="auto" style="color: #767c76; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase;">
-              Worked with teams across
-            </p>
-          </div>
-          <div class="ssr-variant hidden-15iotco">
-            <div class="framer-zpq1u8-container">
-              <div class="framer-Qy8ja framer-1jy8gwl framer-v-1jy8gwl" data-framer-name="Primary">
-                <div class="framer-ticker-wrap">
-                  <ul class="framer-ticker-list" aria-hidden="false">
-                    <li class="ticker-item" aria-posinset="1" aria-setsize="5">
-                      <figure class="framer-1auazv6" data-framer-name="Logo 2" style="aspect-ratio: 5.5 / 1; opacity: 0.6; filter: grayscale(100%);">
-                        <div data-framer-background-image-wrapper="true">
-                          <img decoding="auto" width="110" height="20" src="assets/images/brands/brand_logo_1.svg" alt="Brand Logo 1" class="brand-logo-img">
-                        </div>
-                      </figure>
-                    </li>
-                    <li class="ticker-item" aria-posinset="2" aria-setsize="5">
-                      <figure class="framer-1psuw4p" data-framer-name="Logo 3" style="aspect-ratio: 7.55 / 1; opacity: 0.6; filter: grayscale(100%);">
-                        <div data-framer-background-image-wrapper="true">
-                          <img decoding="auto" width="151" height="20" src="assets/images/brands/brand_logo_2.svg" alt="Brand Logo 2" class="brand-logo-img">
-                        </div>
-                      </figure>
-                    </li>
-                    <li class="ticker-item" aria-posinset="3" aria-setsize="5">
-                      <figure class="framer-b1ejzy" data-framer-name="Logo 4" style="aspect-ratio: 5.55 / 1; opacity: 0.6; filter: grayscale(100%);">
-                        <div data-framer-background-image-wrapper="true">
-                          <img decoding="auto" width="111" height="20" src="assets/images/brands/brand_logo_3.svg" alt="Brand Logo 3" class="brand-logo-img">
-                        </div>
-                      </figure>
-                    </li>
-                    <li class="ticker-item" aria-posinset="4" aria-setsize="5">
-                      <figure class="framer-bl8y80" data-framer-name="Logo 5" style="aspect-ratio: 5.55 / 1; opacity: 0.6; filter: grayscale(100%);">
-                        <div data-framer-background-image-wrapper="true">
-                          <img decoding="auto" width="111" height="20" src="assets/images/brands/brand_logo_4.svg" alt="Brand Logo 4" class="brand-logo-img">
-                        </div>
-                      </figure>
-                    </li>
-                    <li class="ticker-item" aria-posinset="5" aria-setsize="5">
-                      <figure class="framer-iap33i" data-framer-name="Logo 6" style="aspect-ratio: 5.4 / 1; opacity: 0.6; filter: grayscale(100%);">
-                        <div data-framer-background-image-wrapper="true">
-                          <img decoding="auto" width="108" height="20" src="assets/images/brands/brand_logo_5.svg" alt="Brand Logo 5" class="brand-logo-img">
-                        </div>
-                      </figure>
-                    </li>
-                  </ul>
-                </div>
-              </div>
+      <div class="brand-ticker-container">
+        <p class="brand-ticker-heading">
+          Worked with teams across
+        </p>
+        <div class="brand-ticker-viewport">
+          <div class="brand-ticker-track">
+            <!-- Group 1 -->
+            <div class="brand-ticker-group">
+              <figure class="brand-logo-item" style="aspect-ratio: 5.5 / 1;">
+                <img src="assets/images/brands/brand_logo_1.svg" alt="Brand Logo 1" width="110" height="20" class="brand-logo-img">
+              </figure>
+              <figure class="brand-logo-item" style="aspect-ratio: 7.55 / 1;">
+                <img src="assets/images/brands/brand_logo_2.svg" alt="Brand Logo 2" width="151" height="20" class="brand-logo-img">
+              </figure>
+              <figure class="brand-logo-item" style="aspect-ratio: 5.55 / 1;">
+                <img src="assets/images/brands/brand_logo_3.svg" alt="Brand Logo 3" width="111" height="20" class="brand-logo-img">
+              </figure>
+              <figure class="brand-logo-item" style="aspect-ratio: 5.55 / 1;">
+                <img src="assets/images/brands/brand_logo_4.svg" alt="Brand Logo 4" width="111" height="20" class="brand-logo-img">
+              </figure>
+              <figure class="brand-logo-item" style="aspect-ratio: 5.4 / 1;">
+                <img src="assets/images/brands/brand_logo_5.svg" alt="Brand Logo 5" width="108" height="20" class="brand-logo-img">
+              </figure>
+            </div>
+            <!-- Group 2 (Seamless loop clone) -->
+            <div class="brand-ticker-group" aria-hidden="true">
+              <figure class="brand-logo-item" style="aspect-ratio: 5.5 / 1;">
+                <img src="assets/images/brands/brand_logo_1.svg" alt="Brand Logo 1" width="110" height="20" class="brand-logo-img">
+              </figure>
+              <figure class="brand-logo-item" style="aspect-ratio: 7.55 / 1;">
+                <img src="assets/images/brands/brand_logo_2.svg" alt="Brand Logo 2" width="151" height="20" class="brand-logo-img">
+              </figure>
+              <figure class="brand-logo-item" style="aspect-ratio: 5.55 / 1;">
+                <img src="assets/images/brands/brand_logo_3.svg" alt="Brand Logo 3" width="111" height="20" class="brand-logo-img">
+              </figure>
+              <figure class="brand-logo-item" style="aspect-ratio: 5.55 / 1;">
+                <img src="assets/images/brands/brand_logo_4.svg" alt="Brand Logo 4" width="111" height="20" class="brand-logo-img">
+              </figure>
+              <figure class="brand-logo-item" style="aspect-ratio: 5.4 / 1;">
+                <img src="assets/images/brands/brand_logo_5.svg" alt="Brand Logo 5" width="108" height="20" class="brand-logo-img">
+              </figure>
+            </div>
+            <!-- Group 3 (Seamless loop clone) -->
+            <div class="brand-ticker-group" aria-hidden="true">
+              <figure class="brand-logo-item" style="aspect-ratio: 5.5 / 1;">
+                <img src="assets/images/brands/brand_logo_1.svg" alt="Brand Logo 1" width="110" height="20" class="brand-logo-img">
+              </figure>
+              <figure class="brand-logo-item" style="aspect-ratio: 7.55 / 1;">
+                <img src="assets/images/brands/brand_logo_2.svg" alt="Brand Logo 2" width="151" height="20" class="brand-logo-img">
+              </figure>
+              <figure class="brand-logo-item" style="aspect-ratio: 5.55 / 1;">
+                <img src="assets/images/brands/brand_logo_3.svg" alt="Brand Logo 3" width="111" height="20" class="brand-logo-img">
+              </figure>
+              <figure class="brand-logo-item" style="aspect-ratio: 5.55 / 1;">
+                <img src="assets/images/brands/brand_logo_4.svg" alt="Brand Logo 4" width="111" height="20" class="brand-logo-img">
+              </figure>
+              <figure class="brand-logo-item" style="aspect-ratio: 5.4 / 1;">
+                <img src="assets/images/brands/brand_logo_5.svg" alt="Brand Logo 5" width="108" height="20" class="brand-logo-img">
+              </figure>
+            </div>
+            <!-- Group 4 (Seamless loop clone) -->
+            <div class="brand-ticker-group" aria-hidden="true">
+              <figure class="brand-logo-item" style="aspect-ratio: 5.5 / 1;">
+                <img src="assets/images/brands/brand_logo_1.svg" alt="Brand Logo 1" width="110" height="20" class="brand-logo-img">
+              </figure>
+              <figure class="brand-logo-item" style="aspect-ratio: 7.55 / 1;">
+                <img src="assets/images/brands/brand_logo_2.svg" alt="Brand Logo 2" width="151" height="20" class="brand-logo-img">
+              </figure>
+              <figure class="brand-logo-item" style="aspect-ratio: 5.55 / 1;">
+                <img src="assets/images/brands/brand_logo_3.svg" alt="Brand Logo 3" width="111" height="20" class="brand-logo-img">
+              </figure>
+              <figure class="brand-logo-item" style="aspect-ratio: 5.55 / 1;">
+                <img src="assets/images/brands/brand_logo_4.svg" alt="Brand Logo 4" width="111" height="20" class="brand-logo-img">
+              </figure>
+              <figure class="brand-logo-item" style="aspect-ratio: 5.4 / 1;">
+                <img src="assets/images/brands/brand_logo_5.svg" alt="Brand Logo 5" width="108" height="20" class="brand-logo-img">
+              </figure>
             </div>
           </div>
         </div>

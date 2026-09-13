@@ -306,208 +306,136 @@ video {
 }
 
 /* --------------------------------------------------------------------------
-   LEFT COLUMN: Interactive Project Carousel & Preview (Clean Mockup Frame)
+   LEFT COLUMN: Flow Marquee Project Stream (Matching localhost Next.js)
    -------------------------------------------------------------------------- */
-.carousel-card-container {
-  width: 100%;
-  max-width: 100%;
-  min-width: 0;
-  display: flex;
-  flex-direction: column;
-}
-
-.carousel-viewport {
-  width: 100%;
-  max-width: 100%;
-  min-width: 0;
-  aspect-ratio: 16 / 11.8;
-  border-radius: clamp(22px, 2.4vw, 30px);
-  border: 1px solid rgba(0, 0, 0, 0.08);
-  box-shadow: 0 20px 48px -18px rgba(0, 0, 0, 0.22), 0 10px 24px rgba(0, 0, 0, 0.06);
-  background: #ffffff;
-  overflow: hidden;
-  position: relative;
-}
-
-.carousel-track {
+.flow-marquee-container {
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: 100%;
   min-width: 0;
-  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-  will-change: transform;
+  max-width: 100%;
 }
 
-.carousel-slide {
-  width: 100%;
-  height: 100%;
-  min-height: 100%;
-  flex-shrink: 0;
-  box-sizing: border-box;
-  overflow: hidden;
-  background: #ffffff;
-}
-
-.carousel-slide-link {
+.flow-marquee-header {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
+  padding: 0 4px;
+  margin-bottom: 10px;
+}
+
+.flow-marquee-title {
+  font-size: 11.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #767c76;
+}
+
+.flow-marquee-hint {
+  font-size: 11.5px;
+  font-weight: 500;
+  color: #949a94;
+}
+
+.flow-marquee-viewport {
+  position: relative;
+  height: clamp(420px, 38vw, 535px);
   width: 100%;
-  height: 100%;
+  min-width: 0;
   overflow: hidden;
-  background: #f3f2ee;
+  border-radius: clamp(20px, 2vw, 28px);
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 4%, black 96%, transparent 100%);
+  mask-image: linear-gradient(to bottom, transparent 0%, black 4%, black 96%, transparent 100%);
+}
+
+.flow-marquee-track {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  will-change: transform;
+  animation: flowMarqueeVertical 28s linear infinite;
+}
+
+.flow-marquee-viewport:hover .flow-marquee-track,
+.flow-marquee-container:hover .flow-marquee-track {
+  animation-play-state: paused;
+}
+
+@keyframes flowMarqueeVertical {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-50%);
+  }
+}
+
+.flow-slide-card {
+  display: block;
+  width: 100%;
+  height: clamp(260px, 24vw, 340px);
+  flex-shrink: 0;
   text-decoration: none;
   cursor: pointer;
-  padding: clamp(28px, 5.2vw, 48px) clamp(18px, 3.4vw, 38px);
+}
+
+.flow-card-inner {
   position: relative;
-}
-
-.carousel-slide-link::before {
-  content: "";
-  position: absolute;
-  inset: -28px;
-  background-image: var(--slide-bg);
-  background-position: center top;
-  background-size: cover;
-  filter: blur(18px) saturate(1.08);
-  opacity: 0.46;
-  transform: scale(1.08);
-}
-
-.carousel-slide-link::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.42));
-}
-
-.carousel-browser-frame {
-  display: block;
-  width: min(94%, 560px);
-  aspect-ratio: 16 / 9.55;
-  overflow: hidden;
-  border-radius: clamp(8px, 1.2vw, 13px);
-  background: #ffffff;
-  box-shadow: 0 16px 36px -16px rgba(0, 0, 0, 0.34), 0 3px 10px rgba(0, 0, 0, 0.12);
-  position: relative;
-  z-index: 1;
-  transition: transform 0.4s ease, box-shadow 0.4s ease;
-}
-
-.carousel-screen-img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  object-position: top center;
-  display: block;
-  transition: transform 0.4s ease;
-}
-
-.carousel-slide-link:hover .carousel-browser-frame {
-  transform: scale(1.02);
-  box-shadow: 0 22px 46px -18px rgba(0, 0, 0, 0.38), 0 6px 14px rgba(0, 0, 0, 0.12);
-}
-
-/* Centered Indicator Dots & Nav Controls (Matching reference screenshot) */
-.carousel-dots-row {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-  margin-top: 14px;
-  margin-bottom: 14px;
-  width: 100%;
-}
-
-.carousel-dots-wrap {
-  display: flex;
-  align-items: center;
-  gap: 7px;
-}
-
-.c-dot {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: #d6d6d4;
-  border: none;
-  padding: 0;
-  cursor: pointer;
-  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.c-dot.active {
-  width: 22px;
-  border-radius: 999px;
-  background: #111111;
-}
-
-.c-dot:hover:not(.active) {
-  background: #888888;
-}
-
-.carousel-arrow {
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
-  background: #f7f7f7;
-  border: 1px solid rgba(0, 0, 0, 0.06);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #555555;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  padding: 0;
-}
-
-.carousel-arrow:hover {
-  background: #111111;
-  color: #ffffff;
-  border-color: #111111;
-  transform: scale(1.05);
-}
-
-/* Second Card Peek below dots (Matching Reference Image) */
-.carousel-peek-card {
-  width: 100%;
-  border-radius: clamp(18px, 2.2vw, 26px);
+  border-radius: clamp(14px, 1.5vw, 18px);
+  overflow: hidden;
   border: 1px solid rgba(0, 0, 0, 0.08);
-  box-shadow: 0 14px 34px -14px rgba(0, 0, 0, 0.22);
   background: #ffffff;
-  overflow: hidden;
-  height: clamp(110px, 14vw, 150px);
-  cursor: pointer;
-  opacity: 0.95;
-  transition: all 0.3s ease;
-  position: relative;
+  box-shadow: 0 10px 28px -10px rgba(0, 0, 0, 0.12), 0 2px 6px rgba(0, 0, 0, 0.04);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.carousel-peek-card #peekImg {
+.flow-slide-card:hover .flow-card-inner {
+  transform: scale(1.015);
+  box-shadow: 0 16px 36px -8px rgba(0, 0, 0, 0.16), 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+.flow-slide-card.featured .flow-card-inner {
+  border-color: rgba(0, 0, 0, 0.15);
+  box-shadow: 0 12px 32px -8px rgba(0, 0, 0, 0.18), 0 3px 8px rgba(0, 0, 0, 0.06);
+}
+
+.flow-card-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: top center;
-  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+  display: block;
 }
 
-.carousel-peek-card::after {
-  content: "";
+.flow-badge {
   position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, transparent 0%, rgba(255, 255, 255, 0.16) 100%);
-  pointer-events: none;
+  top: 14px;
+  left: 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 9999px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #1a1d1a;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
 }
 
-.carousel-peek-card:hover {
-  opacity: 1;
-  transform: translateY(-3px);
-  box-shadow: 0 18px 36px -6px rgba(0, 0, 0, 0.1);
-}
-
-.carousel-peek-card:hover #peekImg {
-  transform: scale(1.02);
+.flow-badge-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: #182904;
 }
 
 /* --------------------------------------------------------------------------
@@ -826,129 +754,90 @@ video {
 }
 
 /* ==========================================================================
-   Brands Marquee Banner (.framer-lha1us: Trusted by 30+ Brands including)
+   3. WORKED WITH TEAMS ACROSS (Infinite Smooth Brand Ticker)
    ========================================================================== */
 .brands-marquee-section {
-  padding-top: clamp(24px, 3.2vw, 42px);
-  padding-bottom: clamp(24px, 3.2vw, 42px);
   width: 100%;
-  position: relative;
-  background-color: var(--bg-primary);
-  box-sizing: border-box;
-}
-
-.framer-lha1us {
-  display: flex;
-  position: relative;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 22px;
-  width: 100%;
-  max-width: 100%;
-  margin: 0;
-  height: min-content;
-  font-family: var(--font-main), -apple-system, BlinkMacSystemFont, sans-serif;
-  font-size: 12px;
-  color: #000000;
-  overflow: clip;
-  cursor: crosshair;
-  transition: all var(--transition-normal);
-  box-sizing: border-box;
-}
-
-.framer-1w986xf {
-  transform: none;
-  width: 100%;
-  text-align: center;
-}
-
-.framer-text {
-  font-size: 17px;
-  font-weight: 700;
-  letter-spacing: 0.015em;
-  color: #555555;
-  margin: 0;
-  text-align: center;
-}
-
-.ssr-variant {
-  width: 100%;
-  position: relative;
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  padding: clamp(20px, 2.8vw, 36px) 0;
+  background: #ffffff;
   overflow: hidden;
+  box-sizing: border-box;
 }
 
-.framer-zpq1u8-container {
+.brand-ticker-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
   width: 100%;
+}
+
+.brand-ticker-heading {
+  margin: 0;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #767c76;
+}
+
+.brand-ticker-viewport {
   position: relative;
   height: 28px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.framer-Qy8ja {
-  overflow-x: clip;
-  display: flex;
-  position: relative;
-  height: 100%;
   width: 100%;
-  align-items: center;
-  -webkit-mask-image: linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, rgb(0, 0, 0) 5%, rgb(0, 0, 0) 95%, rgba(0, 0, 0, 0) 100%);
-  mask-image: linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, rgb(0, 0, 0) 5%, rgb(0, 0, 0) 95%, rgba(0, 0, 0, 0) 100%);
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, rgb(0, 0, 0) 8%, rgb(0, 0, 0) 92%, rgba(0, 0, 0, 0) 100%);
+  mask-image: linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, rgb(0, 0, 0) 8%, rgb(0, 0, 0) 92%, rgba(0, 0, 0, 0) 100%);
 }
 
-.framer-ticker-wrap {
+.brand-ticker-track {
   display: flex;
-  align-items: center;
   width: max-content;
+  align-items: center;
   will-change: transform;
-  animation: framerTickerScroll 30s linear infinite;
+  animation: brandTickerLoop 26s linear infinite;
 }
 
-.framer-ticker-wrap:hover {
+.brand-ticker-viewport:hover .brand-ticker-track {
   animation-play-state: paused;
 }
 
-.framer-ticker-list {
+@keyframes brandTickerLoop {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.brand-ticker-group {
   display: flex;
-  position: relative;
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-  justify-content: flex-start;
-  flex-direction: row;
-  gap: 48px;
-  padding-right: 48px;
   align-items: center;
+  gap: 56px;
+  padding-right: 56px;
   flex-shrink: 0;
 }
 
-.ticker-item,
-.clone-item {
-  flex-grow: 0;
-  flex-shrink: 0;
-  position: relative;
-  height: 20px;
-  display: flex;
-  align-items: center;
-}
-
-.ticker-item figure,
-.clone-item figure {
+.brand-logo-item {
   margin: 0;
   padding: 0;
+  display: flex;
   height: 20px;
   width: auto;
-  opacity: 0.85;
-  transition: opacity 0.2s ease, transform 0.2s ease;
-  display: flex;
   align-items: center;
+  opacity: 0.6;
+  filter: grayscale(100%);
+  transition: opacity 0.2s ease, filter 0.2s ease, transform 0.2s ease;
 }
 
-.ticker-item figure:hover,
-.clone-item figure:hover {
+.brand-logo-item:hover {
   opacity: 1;
+  filter: grayscale(0%);
   transform: scale(1.05);
 }
 
@@ -956,18 +845,8 @@ video {
   display: block;
   height: 20px;
   width: auto;
-  object-position: center;
   object-fit: contain;
-}
-
-@keyframes framerTickerScroll {
-  0% {
-    transform: translateX(0);
-  }
-
-  100% {
-    transform: translateX(-50%);
-  }
+  object-position: center;
 }
 
 /* ==========================================================================

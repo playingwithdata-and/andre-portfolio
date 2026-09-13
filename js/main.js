@@ -323,161 +323,39 @@ function initLayoutToggle() {
 }
 
 /* ==========================================================================
-   8. Interactive Project Carousel (Hero Left Column)
+   8. Flow Marquee Project Stream Interaction (Hero Left Column)
    ========================================================================== */
 function initProjectCarousel() {
-  const carousel = document.getElementById('projectCarousel');
-  const track = document.getElementById('carouselTrack');
-  const prevBtn = document.getElementById('carouselPrevBtn');
-  const nextBtn = document.getElementById('carouselNextBtn');
-  const dotsContainer = document.getElementById('carouselDots');
-  if (!carousel || !track) return;
-
-  const slides = track.querySelectorAll('.carousel-slide');
-  const dots = dotsContainer ? dotsContainer.querySelectorAll('.c-dot') : [];
-  const totalSlides = slides.length;
-  if (totalSlides === 0) return;
-
-  let currentIndex = 0;
-  let autoPlayTimer = null;
-  const AUTOPLAY_INTERVAL = 4500; // 4.5 seconds
-
-  function updateCarousel(index) {
-    currentIndex = (index + totalSlides) % totalSlides;
-
-    // Smooth vertical translation UPWARDS ("smooth ke atas")
-    track.style.transform = `translateY(-${currentIndex * 100}%)`;
-
-    // Update active slide class
-    slides.forEach((slide, i) => {
-      slide.classList.toggle('active', i === currentIndex);
-    });
-
-    // Update dots
-    dots.forEach((dot, i) => {
-      dot.classList.toggle('active', i === currentIndex);
-    });
-
-    // Update peek card image for the upcoming slide with a smooth hint
-    const peekImg = document.getElementById('peekImg');
-    if (peekImg && slides[currentIndex]) {
-      const nextImg = slides[currentIndex].getAttribute('data-next-img');
-      if (nextImg) {
-        peekImg.style.opacity = '0.4';
-        peekImg.style.transform = 'translateY(8px)';
-        setTimeout(() => {
-          peekImg.src = nextImg;
-          peekImg.style.opacity = '1';
-          peekImg.style.transform = 'translateY(0)';
-        }, 180);
-      }
-    }
-  }
-
-  // Peek card click triggers next slide smoothly upwards
-  const peekCard = document.getElementById('carouselPeekCard');
-  if (peekCard) {
-    peekCard.addEventListener('click', () => {
-      updateCarousel(currentIndex + 1);
-      startAutoPlay();
-    });
-  }
-
-  function startAutoPlay() {
-    stopAutoPlay();
-    autoPlayTimer = setInterval(() => {
-      updateCarousel(currentIndex + 1);
-    }, AUTOPLAY_INTERVAL);
-  }
-
-  function stopAutoPlay() {
-    if (autoPlayTimer) {
-      clearInterval(autoPlayTimer);
-      autoPlayTimer = null;
-    }
-  }
-
-  // Next / Prev buttons
-  if (nextBtn) {
-    nextBtn.addEventListener('click', (e) => {
-      e.preventDefault();
-      updateCarousel(currentIndex + 1);
-      startAutoPlay();
-    });
-  }
-
-  if (prevBtn) {
-    prevBtn.addEventListener('click', (e) => {
-      e.preventDefault();
-      updateCarousel(currentIndex - 1);
-      startAutoPlay();
-    });
-  }
-
-  // Dots click
-  dots.forEach(dot => {
-    dot.addEventListener('click', () => {
-      const targetIndex = parseInt(dot.getAttribute('data-index'), 10);
-      if (!isNaN(targetIndex)) {
-        updateCarousel(targetIndex);
-        startAutoPlay();
-      }
-    });
-  });
+  const container = document.getElementById('projectCarousel');
+  const viewport = document.getElementById('flowMarqueeViewport');
+  const track = document.getElementById('flowMarqueeTrack');
+  if (!container || !viewport || !track) return;
 
   // Pause on hover
-  carousel.addEventListener('mouseenter', stopAutoPlay);
-  carousel.addEventListener('mouseleave', startAutoPlay);
-
-  // Touch Swipe Support (Up/Down and Left/Right) for Mobile
-  let touchStartY = 0;
-  let touchEndY = 0;
-  let touchStartX = 0;
-  let touchEndX = 0;
-
-  carousel.addEventListener('touchstart', (e) => {
-    touchStartY = e.changedTouches[0].screenY;
-    touchStartX = e.changedTouches[0].screenX;
-    stopAutoPlay();
-  }, { passive: true });
-
-  carousel.addEventListener('touchend', (e) => {
-    touchEndY = e.changedTouches[0].screenY;
-    touchEndX = e.changedTouches[0].screenX;
-    const diffY = touchStartY - touchEndY;
-    const diffX = touchStartX - touchEndX;
-
-    if (Math.abs(diffY) > 30 || Math.abs(diffX) > 30) {
-      if (diffY > 30 || diffX > 30) {
-        // Swiped up or left -> Next slide upwards
-        updateCarousel(currentIndex + 1);
-      } else {
-        // Swiped down or right -> Previous slide downwards
-        updateCarousel(currentIndex - 1);
-      }
-    }
-    startAutoPlay();
-  }, { passive: true });
-
-  // Keyboard accessibility when carousel is hovered / focused
-  document.addEventListener('keydown', (e) => {
-    // Only if carousel is visible in viewport
-    const rect = carousel.getBoundingClientRect();
-    const isVisible = rect.top < window.innerHeight && rect.bottom > 0;
-    if (!isVisible) return;
-
-    if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
-      updateCarousel(currentIndex - 1);
-      startAutoPlay();
-    } else if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
-      updateCarousel(currentIndex + 1);
-      startAutoPlay();
-    }
+  container.addEventListener('mouseenter', () => {
+    track.style.animationPlayState = 'paused';
   });
 
-  // Initialize
-  updateCarousel(0);
-  startAutoPlay();
+  container.addEventListener('mouseleave', () => {
+    track.style.animationPlayState = 'running';
+  });
+
+  // Pause on focus / touch
+  container.addEventListener('focusin', () => {
+    track.style.animationPlayState = 'paused';
+  });
+
+  container.addEventListener('focusout', () => {
+    track.style.animationPlayState = 'running';
+  });
+
+  viewport.addEventListener('touchstart', () => {
+    track.style.animationPlayState = 'paused';
+  }, { passive: true });
+
+  viewport.addEventListener('touchend', () => {
+    track.style.animationPlayState = 'running';
+  }, { passive: true });
 }
 
 /* ==========================================================================
