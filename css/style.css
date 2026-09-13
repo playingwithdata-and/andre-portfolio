@@ -354,7 +354,7 @@ video {
   flex-direction: column;
   gap: 16px;
   will-change: transform;
-  animation: flowMarqueeVertical 28s linear infinite;
+  animation: flowMarqueeVertical 20s linear infinite;
 }
 
 .flow-marquee-viewport:hover .flow-marquee-track,
@@ -408,6 +408,18 @@ video {
   object-fit: cover;
   object-position: top center;
   display: block;
+}
+
+.flow-card-img.object-center {
+  object-position: center;
+}
+
+.flow-card-img.object-top {
+  object-position: top center;
+}
+
+.flow-card-img.object-left {
+  object-position: left center;
 }
 
 .flow-badge {
@@ -758,11 +770,8 @@ video {
    ========================================================================== */
 .brands-marquee-section {
   width: 100%;
-  border-top: 1px solid rgba(0, 0, 0, 0.05);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-  padding: clamp(20px, 2.8vw, 36px) 0;
+  padding: clamp(14px, 2vw, 24px) 0;
   background: #ffffff;
-  overflow: hidden;
   box-sizing: border-box;
 }
 
@@ -773,6 +782,10 @@ video {
   justify-content: center;
   gap: 14px;
   width: 100%;
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  padding: clamp(20px, 2.5vw, 32px) 0;
+  box-sizing: border-box;
 }
 
 .brand-ticker-heading {

@@ -292,12 +292,10 @@ function FlowMarqueeCarousel() {
                     alt={slide.title}
                     className={`h-full w-full object-cover ${slide.imageClass ?? "object-top"}`}
                   />
-                  {isDigitalReceipt && (
-                    <div className="absolute left-3.5 top-3.5 inline-flex items-center gap-1.5 rounded-full border border-black/10 bg-white/95 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.06em] text-[#1a1d1a] shadow-[0_2px_8px_rgba(0,0,0,0.08)] backdrop-blur-sm">
-                      <span className="h-1.5 w-1.5 rounded-full bg-[#182904]" />
-                      Featured Experiment
-                    </div>
-                  )}
+                  <div className="absolute left-3.5 top-3.5 inline-flex items-center gap-1.5 rounded-full border border-black/10 bg-white/95 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.06em] text-[#1a1d1a] shadow-[0_2px_8px_rgba(0,0,0,0.08)] backdrop-blur-sm">
+                    <span className="h-1.5 w-1.5 rounded-full bg-[#182904]" />
+                    Case Study
+                  </div>
                 </div>
               </a>
             );
