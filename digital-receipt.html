@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Digital Receipt — Case Study | Andre</title>
+  <meta name="description" content="A receipt for where your day actually went. A one-hour creative product experiment turning natural-language day descriptions into a physical-style time ledger.">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="assets/images/favicon.png">
+  
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    /* Case Study Editorial Styling */
+    .cs-header-nav {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    
+    .cs-back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 18px;
+      border-radius: var(--radius-pill);
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-secondary);
+      box-shadow: var(--shadow-sm);
+      transition: all var(--transition-fast);
+    }
+    
+    .cs-back-link:hover {
+      color: var(--text-primary);
+      transform: translateX(-3px);
+      box-shadow: var(--shadow-md);
+    }
+    
+    .cs-hero-section {
+      padding-top: clamp(90px, 10vw, 125px);
+      padding-bottom: clamp(32px, 4vw, 48px);
+    }
+    
+    .cs-badge-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 5px 13px;
+      border-radius: var(--radius-pill);
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-subtle);
+      font-size: 11.5px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-secondary);
+      margin-bottom: 18px;
+    }
+    
+    .cs-badge-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--accent-teal-light);
+    }
+    
+    .cs-hero-title {
+      font-size: clamp(36px, 4.8vw, 60px);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.06;
+      color: var(--text-primary);
+      margin-bottom: 14px;
+    }
+    
+    .cs-hero-subtitle {
+      font-size: clamp(19px, 2.2vw, 26px);
+      font-weight: 600;
+      letter-spacing: -0.015em;
+      line-height: 1.35;
+      color: var(--text-secondary);
+      max-width: 780px;
+      margin-bottom: 16px;
+    }
+    
+    .cs-hero-lead {
+      font-size: clamp(15.5px, 1.5vw, 18px);
+      line-height: 1.55;
+      color: var(--text-muted);
+      max-width: 720px;
+      margin-bottom: 32px;
+    }
+    
+    /* Editorial Metadata Row */
+    .cs-meta-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      padding: 18px 0;
+      border-top: 1px solid var(--border-subtle);
+      border-bottom: 1px solid var(--border-subtle);
+      margin-bottom: 36px;
+    }
+    
+    .cs-meta-item {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    
+    .cs-meta-label {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-muted);
+    }
+    
+    .cs-meta-value {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-primary);
+      line-height: 1.35;
+    }
+    
+    /* Media Containers */
+    .cs-media-hero {
+      width: 100%;
+      border-radius: var(--radius-card);
+      overflow: hidden;
+      box-shadow: 0 16px 40px -10px rgba(26, 29, 26, 0.1);
+      border: 1px solid var(--border-subtle);
+      background: #0f1110;
+      margin-bottom: clamp(48px, 6vw, 72px);
+    }
+    
+    .cs-media-hero img {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: cover;
+    }
+    
+    /* Section Rhythm */
+    .cs-section {
+      padding: clamp(40px, 5.5vw, 70px) 0;
+      border-top: 1px solid var(--border-light);
+    }
+    
+    .cs-section-header {
+      margin-bottom: 24px;
+    }
+    
+    .cs-section-number {
+      font-size: 11.5px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent-teal-light);
+      margin-bottom: 8px;
+      display: block;
+    }
+    
+    .cs-section-title {
+      font-size: clamp(26px, 3.2vw, 38px);
+      font-weight: 800;
+      letter-spacing: -0.025em;
+      line-height: 1.15;
+      color: var(--text-primary);
+    }
+    
+    .cs-lead-text {
+      font-size: clamp(16px, 1.6vw, 19px);
+      line-height: 1.55;
+      font-weight: 500;
+      color: var(--text-secondary);
+      max-width: 780px;
+    }
+    
+    /* Typographic Hook Statement */
+    .cs-hook-quote {
+      margin: 28px 0 0 0;
+      padding: 24px 28px;
+      border-radius: 18px;
+      background: var(--bg-card-alt);
+      border-left: 4px solid var(--text-primary);
+      border-top: 1px solid var(--border-subtle);
+      border-right: 1px solid var(--border-subtle);
+      border-bottom: 1px solid var(--border-subtle);
+    }
+    
+    .cs-hook-quote-title {
+      font-size: clamp(22px, 2.6vw, 32px);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: var(--text-primary);
+      margin-bottom: 6px;
+    }
+    
+    .cs-hook-quote-desc {
+      font-size: 15px;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+    
+    /* Editorial Step Pipeline */
+    .cs-pipeline-strip {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 10px;
+      margin: 24px 0 18px 0;
+    }
+    
+    .cs-pipeline-node {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-pill);
+      font-size: 13.5px;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+    
+    .cs-pipeline-arrow {
+      color: var(--text-muted);
+      font-size: 14px;
+    }
+    
+    /* Code Bubble */
+    .cs-code-bubble {
+      background: #141715;
+      color: #e2e8e4;
+      border-radius: 14px;
+      padding: 16px 22px;
+      font-family: var(--font-mono), monospace;
+      font-size: 14.5px;
+      line-height: 1.5;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      margin: 16px 0;
+    }
+    
+    /* Editorial Decision Rows (Replacing Heavy Cards) */
+    .cs-decisions-editorial {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 28px 36px;
+      margin-top: 28px;
+    }
+    
+    .cs-decision-item {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border-subtle);
+    }
+    
+    .cs-decision-heading {
+      font-size: 17px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      color: var(--text-primary);
+    }
+    
+    .cs-decision-text {
+      font-size: 14.5px;
+      color: var(--text-secondary);
+      line-height: 1.55;
+    }
+    
+    /* Art Direction & Interaction Split Showcase */
+    .cs-split-showcase {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-top: 28px;
+    }
+    
+    .cs-visual-card {
+      border-radius: 18px;
+      overflow: hidden;
+      border: 1px solid var(--border-subtle);
+      box-shadow: var(--shadow-md);
+      background: #ffffff;
+    }
+    
+    .cs-visual-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    
+    /* ONE-HOUR CONSTRAINT SECTION — High Visual Prominence */
+    .cs-constraint-box {
+      border-radius: var(--radius-card);
+      background: #fafafa;
+      border: 1px solid var(--border-subtle);
+      padding: clamp(28px, 4vw, 44px);
+      margin-top: 28px;
+    }
+    
+    .cs-timer-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-bottom: 24px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+    
+    .cs-timer-headline {
+      font-size: clamp(20px, 2.4vw, 28px);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: var(--text-primary);
+      line-height: 1.2;
+    }
+    
+    .cs-timer-display {
+      font-family: var(--font-mono), monospace;
+      font-size: clamp(34px, 4.5vw, 52px);
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      color: #141715;
+      background: #ffffff;
+      padding: 6px 20px;
+      border-radius: 14px;
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05), var(--shadow-sm);
+      display: inline-block;
+    }
+    
+    .cs-cut-shipped-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+    }
+    
+    .cs-cs-column-title {
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    
+    .cs-cs-column-title.cut {
+      color: #a84242;
+    }
+    
+    .cs-cs-column-title.shipped {
+      color: #1f7a63;
+    }
+    
+    .cs-pill-cluster {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    
+    .cs-tag-item {
+      font-size: 13px;
+      font-weight: 600;
+      padding: 6px 13px;
+      border-radius: var(--radius-pill);
+    }
+    
+    .cs-tag-item.cut {
+      background: #fbf0f0;
+      color: #9c3b3b;
+      border: 1px solid rgba(168, 66, 66, 0.18);
+      text-decoration: line-through;
+    }
+    
+    .cs-tag-item.shipped {
+      background: #eef7f3;
+      color: #1b6351;
+      border: 1px solid rgba(31, 122, 99, 0.22);
+    }
+    
+    /* Secondary Closing Gallery */
+    .cs-secondary-gallery {
+      margin-top: clamp(40px, 5vw, 64px);
+    }
+    
+    /* Closing Card */
+    .cs-closing-card {
+      background: #141715;
+      color: #ffffff;
+      border-radius: var(--radius-card);
+      padding: clamp(36px, 5vw, 56px);
+      text-align: center;
+      margin: 40px 0 20px 0;
+    }
+    
+    .cs-closing-title {
+      font-size: clamp(26px, 3.6vw, 40px);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 12px;
+    }
+    
+    .cs-closing-desc {
+      font-size: clamp(15.5px, 1.6vw, 18px);
+      color: #a4aca6;
+      max-width: 580px;
+      margin: 0 auto 28px auto;
+      line-height: 1.55;
+    }
+    
+    /* Responsive Breakpoints */
+    @media (max-width: 960px) {
+      .cs-meta-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 18px;
+      }
+      .cs-decisions-editorial {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+      .cs-split-showcase {
+        grid-template-columns: 1fr;
+      }
+      .cs-cut-shipped-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+      .cs-timer-header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+    
+    @media (max-width: 640px) {
+      .cs-meta-grid {
+        grid-template-columns: 1fr;
+        gap: 14px;
+      }
+      .cs-pipeline-strip {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .cs-pipeline-arrow {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Floating Navigation Bar -->
+  <header class="site-header" id="siteHeader">
+    <div class="nav-container">
+      <nav class="nav-inner" aria-label="Main Navigation">
+        <!-- Monogram Logo -->
+        <a href="index.html" class="nav-logo" aria-label="Back to Homepage">A</a>
+
+        <!-- Center Back Pill -->
+        <div class="cs-header-nav">
+          <a href="index.html#workSection" class="cs-back-link">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="19" y1="12" x2="5" y2="12"></line>
+              <polyline points="12 19 5 12 12 5"></polyline>
+            </svg>
+            Back to Projects
+          </a>
+        </div>
+
+        <!-- Right External Actions -->
+        <div class="nav-actions">
+          <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="nav-btn">
+            Linkedin
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="7" y1="17" x2="17" y2="7"></line>
+              <polyline points="7 7 17 7 17 17"></polyline>
+            </svg>
+          </a>
+          <a href="index.html#copyEmailBtn" class="nav-btn">
+            Contact
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+          </a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="cs-hero-section reveal">
+      <div class="container">
+        <!-- Badge -->
+        <div class="cs-badge-pill">
+          <span class="cs-badge-dot"></span>
+          Creative Product Experiment
+        </div>
+
+        <!-- Title & Subtitle -->
+        <h1 class="cs-hero-title">DIGITAL RECEIPT</h1>
+        <p class="cs-hero-subtitle">A receipt for where your day actually went.</p>
+        <p class="cs-hero-lead">
+          A focused one-hour creative product experiment that turns a natural-language description of your day into a physical-style receipt for how you spent your time.
+        </p>
+
+        <!-- Compact Metadata Row -->
+        <div class="cs-meta-grid">
+          <div class="cs-meta-item">
+            <span class="cs-meta-label">ROLE</span>
+            <span class="cs-meta-value">Product Design · Art Direction · Dev</span>
+          </div>
+          <div class="cs-meta-item">
+            <span class="cs-meta-label">TYPE</span>
+            <span class="cs-meta-value">Creative Product Experiment</span>
+          </div>
+          <div class="cs-meta-item">
+            <span class="cs-meta-label">CONSTRAINT</span>
+            <span class="cs-meta-value">~1 Hour MVP Boundary</span>
+          </div>
+          <div class="cs-meta-item">
+            <span class="cs-meta-label">YEAR</span>
+            <span class="cs-meta-value">2026</span>
+          </div>
+        </div>
+
+        <!-- Primary Product Visual (Laptop Showcase) -->
+        <div class="cs-media-hero">
+          <img src="assets/images/projects/digital-receipt/mockup_laptop_hero.png" alt="Digital Receipt — Desktop Application and Printed Thermal Receipt" loading="eager">
+        </div>
+      </div>
+    </section>
+
+    <!-- 01 / CONCEPT (THE HOOK) -->
+    <section class="cs-section reveal">
+      <div class="container">
+        <div class="cs-section-header">
+          <span class="cs-section-number">01 / Concept</span>
+          <h2 class="cs-section-title">YOU GET 24 HOURS.<br>WHERE DID THEY GO?</h2>
+        </div>
+        <p class="cs-lead-text">
+          Every day gives us the same 24-hour budget, but we rarely experience time as something we've actually spent. Digital Receipt turns that invisible transaction into a tangible object.
+        </p>
+        
+        <div class="cs-hook-quote">
+          <div class="cs-hook-quote-title">“YOU PAID WITH TIME.”</div>
+          <p class="cs-hook-quote-desc">
+            Time is an irreversible daily expenditure. When activities are treated like line items on a sales receipt, unconscious trade-offs become concrete reality.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 02 / EXPERIENCE -->
+    <section class="cs-section reveal">
+      <div class="container">
+        <div class="cs-section-header">
+          <span class="cs-section-number">02 / Experience</span>
+          <h2 class="cs-section-title">NATURAL RECALL OVER TIME-TRACKING</h2>
+        </div>
+        <p class="cs-lead-text">
+          Users describe their day as they naturally remember it rather than filling out an intimidating spreadsheet.
+        </p>
+
+        <!-- Pipeline Strip -->
+        <div class="cs-pipeline-strip">
+          <span class="cs-pipeline-node">Natural Input</span>
+          <span class="cs-pipeline-arrow">→</span>
+          <span class="cs-pipeline-node">Local Parsing</span>
+          <span class="cs-pipeline-arrow">→</span>
+          <span class="cs-pipeline-node">Receipt Prints</span>
+          <span class="cs-pipeline-arrow">→</span>
+          <span class="cs-pipeline-node">Reflect</span>
+          <span class="cs-pipeline-arrow">→</span>
+          <span class="cs-pipeline-node">Export</span>
+        </div>
+
+        <div class="cs-code-bubble">
+          “gue kerja 8 jam, tidur 7 jam, nonton YouTube 2 jam dan coding 2 jam”
+        </div>
+        <p style="font-size: 14px; color: var(--text-muted); margin-top: 8px;">
+          The parser supports casual Indonesian and English colloquialisms (including <em>sejam</em>, <em>setengah jam</em>, shorthand <em>8j</em>). The MVP intentionally uses pragmatic, deterministic local parsing rather than unpredictable external AI APIs.
+        </p>
+      </div>
+    </section>
+
+    <!-- 03 / DECISIONS — Compressed Editorial Treatment -->
+    <section class="cs-section reveal">
+      <div class="container">
+        <div class="cs-section-header">
+          <span class="cs-section-number">03 / Decisions</span>
+          <h2 class="cs-section-title">FOUR DECISIONS SHAPED THE PRODUCT.</h2>
+        </div>
+
+        <div class="cs-decisions-editorial">
+          <div class="cs-decision-item">
+            <h3 class="cs-decision-heading">01 — Natural language over forms</h3>
+            <p class="cs-decision-text">
+              Remembering a day should feel conversational, not like filling out a spreadsheet.
+            </p>
+          </div>
+
+          <div class="cs-decision-item">
+            <h3 class="cs-decision-heading">02 — Unaccounted, never invented</h3>
+            <p class="cs-decision-text">
+              Missing hours remain UNACCOUNTED instead of being guessed or fabricated to reach 24 hours.
+            </p>
+          </div>
+
+          <div class="cs-decision-item">
+            <h3 class="cs-decision-heading">03 — Reflection, not judgment</h3>
+            <p class="cs-decision-text">
+              The system reveals observational patterns (e.g. creating vs. consuming) without assigning patronizing productivity scores.
+            </p>
+          </div>
+
+          <div class="cs-decision-item">
+            <h3 class="cs-decision-heading">04 — Receipt over dashboard</h3>
+            <p class="cs-decision-text">
+              Time already spent becomes a physical artifact rather than another analytics interface.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 04 / ART DIRECTION & SIGNATURE INTERACTION -->
+    <section class="cs-section reveal">
+      <div class="container">
+        <div class="cs-section-header">
+          <span class="cs-section-number">04 / Art Direction &amp; Interaction</span>
+          <h2 class="cs-section-title">THERMAL TRUTH</h2>
+        </div>
+        <p class="cs-lead-text">
+          80% Thermal Truth balanced with 20% Personal Audit clarity. Tactile warm paper (<code>#EEE9DE</code>), authentic monospace typography, and measured mechanical feedback as the receipt feeds downward from the slot.
+        </p>
+
+        <!-- Two-Panel Visual Pairing: Interaction & Final Artifact -->
+        <div class="cs-split-showcase">
+          <div class="cs-visual-card">
+            <img src="assets/images/projects/digital-receipt/mockup_printer_feed.png" alt="Signature Interaction: Mechanical Printer Slot Feeding Receipt" loading="lazy">
+          </div>
+          <div class="cs-visual-card">
+            <img src="assets/images/projects/digital-receipt/mockup_receipt_artifact.png" alt="Final Thermal Receipt Artifact with 24H Breakdown and Reflection" loading="lazy">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 05 / ONE-HOUR CONSTRAINT -->
+    <section class="cs-section reveal">
+      <div class="container">
+        <div class="cs-section-header">
+          <span class="cs-section-number">05 / The Constraint</span>
+          <h2 class="cs-section-title">ONE HOUR. ONE INTERACTION. ONE FINISHED PRODUCT.</h2>
+        </div>
+        <p class="cs-lead-text">
+          The project intentionally started with a strict one-hour MVP constraint to force ruthless prioritization around a single end-to-end loop.
+        </p>
+
+        <div class="cs-constraint-box">
+          <div class="cs-timer-header">
+            <div>
+              <div class="cs-timer-headline">THE 60-MINUTE BOUNDARY</div>
+              <p style="font-size: 14px; color: var(--text-muted); margin-top: 4px;">
+                Strict boundary enforced from minute zero.
+              </p>
+            </div>
+            <div class="cs-timer-display">01:00:00</div>
+          </div>
+
+          <div class="cs-cut-shipped-grid">
+            <!-- CUT -->
+            <div>
+              <div class="cs-cs-column-title cut">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="18" y1="6" x2="6" y2="18"></line>
+                  <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+                CUT
+              </div>
+              <div class="cs-pill-cluster">
+                <span class="cs-tag-item cut">Authentication</span>
+                <span class="cs-tag-item cut">Database</span>
+                <span class="cs-tag-item cut">History</span>
+                <span class="cs-tag-item cut">Dashboard</span>
+                <span class="cs-tag-item cut">AI API</span>
+              </div>
+            </div>
+
+            <!-- SHIPPED -->
+            <div>
+              <div class="cs-cs-column-title shipped">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+                SHIPPED
+              </div>
+              <div class="cs-pill-cluster">
+                <span class="cs-tag-item shipped">Natural-language input</span>
+                <span class="cs-tag-item shipped">Indonesian + English parser</span>
+                <span class="cs-tag-item shipped">24-hour accounting</span>
+                <span class="cs-tag-item shipped">Thermal receipt</span>
+                <span class="cs-tag-item shipped">Reflective insight</span>
+                <span class="cs-tag-item shipped">Receipt export</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Secondary Closing Gallery -->
+        <div class="cs-secondary-gallery">
+          <div class="cs-media-hero" style="margin-bottom: 0;">
+            <img src="assets/images/projects/digital-receipt/mockup_full_overview.png" alt="Digital Receipt — Complete Brand, Physical Artifact, and Multi-Device Ecosystem" loading="lazy">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CLOSING -->
+    <section class="cs-section reveal">
+      <div class="container">
+        <div class="cs-closing-card">
+          <h2 class="cs-closing-title">A SMALL PRODUCT.<br>FINISHED ON PURPOSE.</h2>
+          <p class="cs-closing-desc">
+            Digital Receipt wasn’t designed to become a bloated productivity suite. The goal was to find one strong metaphor, turn it into a coherent physical-digital interaction, and ship the complete experience.
+          </p>
+          <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 14px; margin-top: 28px;">
+            <a href="index.html#workSection" class="btn-cta-dark" style="display: inline-flex; align-items: center; gap: 8px; background: transparent; border: 1px solid rgba(255,255,255,0.25); color: #ffffff;">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="19" y1="12" x2="5" y2="12"></line>
+                <polyline points="12 19 5 12 12 5"></polyline>
+              </svg>
+              All Projects
+            </a>
+            <a href="aerform.html" class="btn-cta-dark" style="display: inline-flex; align-items: center; gap: 8px; background: #ffffff; color: #141715;">
+              View Next Project: AERFORM
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Site Footer Section -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-inner">
+        <!-- CTA Headline -->
+        <h2 class="footer-cta-headline reveal">
+          Some things start with a simple conversation.
+        </h2>
+
+        <!-- Interactive Contact Row -->
+        <div class="footer-contact-row reveal">
+          <!-- Copy Email Button -->
+          <button class="copy-email-btn" id="copyEmailBtn" aria-label="Copy Email Address">
+            <span class="email-address">andre.analytics@gmail.com</span>
+            <span class="copy-badge" id="copyBadge">
+              <span id="copyIcon">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                  <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                </svg>
+              </span>
+              <span id="copyText">Copy</span>
+            </span>
+          </button>
+
+          <!-- Social Links -->
+          <div class="footer-social-links">
+            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="footer-social-btn">
+              Linkedin
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="7" y1="17" x2="17" y2="7"></line>
+                <polyline points="7 7 17 7 17 17"></polyline>
+              </svg>
+            </a>
+            <a href="#" target="_blank" rel="noopener noreferrer" class="footer-social-btn">
+              Resume
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="7" y1="17" x2="17" y2="7"></line>
+                <polyline points="7 7 17 7 17 17"></polyline>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Bottom Bar -->
+        <div class="footer-bottom-bar reveal">
+          <span>&copy; 2026 Andre</span>
+          <span class="footer-thanks">Thanks for visiting! 🫶</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/lenis.min.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

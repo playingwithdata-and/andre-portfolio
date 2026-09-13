@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AERFORM — Case Study | Andre</title>
+  <meta name="description" content="An interactive performance footwear experience built around movement and product discovery.">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="assets/images/favicon.png">
+  
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    /* Case Study Editorial Styling */
+    .cs-header-nav {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    
+    .cs-back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 18px;
+      border-radius: var(--radius-pill);
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-secondary);
+      box-shadow: var(--shadow-sm);
+      transition: all var(--transition-fast);
+      text-decoration: none;
+    }
+    
+    .cs-back-link:hover {
+      color: var(--text-primary);
+      transform: translateX(-3px);
+      box-shadow: var(--shadow-md);
+    }
+    
+    .cs-hero-section {
+      padding-top: clamp(90px, 10vw, 125px);
+      padding-bottom: clamp(32px, 4vw, 48px);
+    }
+    
+    .cs-badge-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 5px 13px;
+      border-radius: var(--radius-pill);
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-subtle);
+      font-size: 11.5px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-secondary);
+      margin-bottom: 18px;
+    }
+    
+    .cs-badge-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #ff5500;
+    }
+    
+    .cs-hero-title {
+      font-size: clamp(36px, 4.8vw, 60px);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.06;
+      color: var(--text-primary);
+      margin-bottom: 14px;
+    }
+    
+    .cs-hero-subtitle {
+      font-size: clamp(19px, 2.2vw, 26px);
+      font-weight: 600;
+      letter-spacing: -0.015em;
+      line-height: 1.35;
+      color: var(--text-secondary);
+      max-width: 780px;
+      margin-bottom: 16px;
+    }
+    
+    .cs-hero-lead {
+      font-size: clamp(15.5px, 1.5vw, 18px);
+      line-height: 1.55;
+      color: var(--text-muted);
+      max-width: 720px;
+      margin-bottom: 32px;
+    }
+    
+    /* Editorial Metadata Row */
+    .cs-meta-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      padding: 18px 0;
+      border-top: 1px solid var(--border-subtle);
+      border-bottom: 1px solid var(--border-subtle);
+      margin-bottom: 36px;
+    }
+    
+    .cs-meta-item {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    
+    .cs-meta-label {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-muted);
+    }
+    
+    .cs-meta-value {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-primary);
+      line-height: 1.35;
+    }
+    
+    /* Media Containers */
+    .cs-media-hero {
+      width: 100%;
+      border-radius: var(--radius-card);
+      overflow: hidden;
+      box-shadow: 0 16px 40px -10px rgba(26, 29, 26, 0.12);
+      border: 1px solid var(--border-subtle);
+      background: #0c0d0e;
+      margin-bottom: clamp(48px, 6vw, 72px);
+    }
+    
+    .cs-media-hero img {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: cover;
+    }
+    
+    /* Section Rhythm */
+    .cs-section {
+      padding: clamp(40px, 5.5vw, 70px) 0;
+      border-top: 1px solid var(--border-light);
+    }
+    
+    .cs-section-header {
+      margin-bottom: 24px;
+    }
+    
+    .cs-section-number {
+      font-size: 11.5px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #ff5500;
+      margin-bottom: 8px;
+      display: block;
+    }
+    
+    .cs-section-title {
+      font-size: clamp(26px, 3.2vw, 38px);
+      font-weight: 800;
+      letter-spacing: -0.025em;
+      line-height: 1.15;
+      color: var(--text-primary);
+    }
+    
+    .cs-lead-text {
+      font-size: clamp(16px, 1.6vw, 19px);
+      line-height: 1.55;
+      font-weight: 500;
+      color: var(--text-secondary);
+      max-width: 780px;
+    }
+    
+    /* Typographic Hook Statement */
+    .cs-hook-quote {
+      margin: 28px 0 0 0;
+      padding: 24px 28px;
+      border-radius: 18px;
+      background: var(--bg-card-alt);
+      border-left: 4px solid #ff5500;
+      border-top: 1px solid var(--border-subtle);
+      border-right: 1px solid var(--border-subtle);
+      border-bottom: 1px solid var(--border-subtle);
+    }
+    
+    .cs-hook-quote-title {
+      font-size: clamp(20px, 2.4vw, 28px);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: var(--text-primary);
+      margin-bottom: 6px;
+    }
+    
+    .cs-hook-quote-body {
+      font-size: 15px;
+      line-height: 1.6;
+      color: var(--text-secondary);
+      margin: 0;
+    }
+    
+    /* Experience Flow Strip */
+    .cs-flow-strip {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 10px;
+      margin: 24px 0 28px 0;
+    }
+    
+    .cs-flow-pill {
+      display: inline-flex;
+      align-items: center;
+      padding: 6px 16px;
+      border-radius: var(--radius-pill);
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-subtle);
+      font-size: 13.5px;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+    
+    .cs-flow-arrow {
+      color: var(--text-muted);
+      font-size: 14px;
+    }
+    
+    /* Paired Media Grid */
+    .cs-media-grid-pair {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      margin-top: 24px;
+    }
+    
+    .cs-product-card-preview {
+      border: 1px solid var(--border-subtle);
+      background: var(--bg-card-alt);
+      border-radius: 18px;
+      padding: 12px;
+      box-shadow: var(--shadow-sm);
+    }
+    
+    .cs-product-card-preview img {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+      border-radius: 12px;
+      display: block;
+      transition: transform 0.3s ease;
+    }
+    
+    .cs-product-card-preview:hover img {
+      transform: scale(1.02);
+    }
+    
+    .cs-product-info {
+      padding: 12px 4px 4px 4px;
+    }
+    
+    .cs-product-name {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+    
+    .cs-product-sub {
+      font-size: 12.5px;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+    
+    /* Decisions Grid */
+    .cs-decisions-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+      margin-top: 32px;
+    }
+    
+    .cs-decision-item {
+      padding-top: 16px;
+      border-top: 1px solid var(--border-subtle);
+    }
+    
+    .cs-decision-title {
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 8px;
+      letter-spacing: -0.01em;
+    }
+    
+    .cs-decision-text {
+      font-size: 14.5px;
+      line-height: 1.6;
+      color: var(--text-secondary);
+      margin: 0;
+    }
+    
+    /* Points Grid */
+    .cs-points-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      margin-top: 28px;
+    }
+    
+    .cs-point-card {
+      border: 1px solid var(--border-subtle);
+      background: var(--bg-card-alt);
+      border-radius: 16px;
+      padding: 20px;
+    }
+    
+    .cs-point-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 4px;
+    }
+    
+    .cs-point-desc {
+      font-size: 13.5px;
+      line-height: 1.55;
+      color: var(--text-secondary);
+      margin: 0;
+    }
+    
+    /* Closing Card */
+    .cs-closing-card {
+      background: #0c0d0e;
+      color: #ffffff;
+      border-radius: 24px;
+      padding: clamp(36px, 6vw, 60px) clamp(24px, 4vw, 48px);
+      text-align: center;
+      box-shadow: 0 20px 48px -12px rgba(12, 13, 14, 0.3);
+      margin-top: 20px;
+    }
+    
+    .cs-closing-tag {
+      font-size: 11.5px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #ff5500;
+      margin-bottom: 12px;
+      display: block;
+    }
+    
+    .cs-closing-title {
+      font-size: clamp(26px, 3.6vw, 40px);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      margin-bottom: 14px;
+      color: #ffffff;
+    }
+    
+    .cs-closing-desc {
+      font-size: clamp(15px, 1.6vw, 17.5px);
+      line-height: 1.6;
+      color: #9ca3af;
+      max-width: 580px;
+      margin: 0 auto;
+    }
+    
+    @media (max-width: 768px) {
+      .cs-meta-grid {
+        grid-template-columns: 1fr;
+      }
+      .cs-media-grid-pair {
+        grid-template-columns: 1fr;
+      }
+      .cs-decisions-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+      .cs-points-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body class="theme-light">
+  <!-- Top Global Floating Nav -->
+  <header class="header-nav header-visible">
+    <div class="header-container">
+      <nav class="nav-inner" aria-label="Main Navigation">
+        <!-- Brand Logo -->
+        <a href="index.html" class="nav-logo" aria-label="Home">
+          A
+        </a>
+
+        <!-- Center Back Button -->
+        <a href="index.html#workSection" class="cs-back-link">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="19" y1="12" x2="5" y2="12"></line>
+            <polyline points="12 19 5 12 12 5"></polyline>
+          </svg>
+          Back to Projects
+        </a>
+
+        <!-- Right Contact Links -->
+        <div class="nav-social-group">
+          <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="social-btn">
+            Linkedin
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="7" y1="17" x2="17" y2="7"></line>
+              <polyline points="7 7 17 7 17 17"></polyline>
+            </svg>
+          </a>
+          <a href="#copyEmailBtn" class="btn-cta-dark" style="padding: 9px 18px; font-size: 13.5px; background: #111827;">
+            Contact
+          </a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- HERO SECTION -->
+    <section class="cs-hero-section">
+      <div class="cs-badge-pill">
+        <span class="cs-badge-dot"></span>
+        Performance Commerce Experience
+      </div>
+      
+      <h1 class="cs-hero-title">AERFORM</h1>
+      <p class="cs-hero-subtitle">Performance footwear, designed to move.</p>
+      <p class="cs-hero-lead">
+        An interactive performance footwear experience built around movement and product discovery, merging athletic energy with a clear, restrained browsing architecture.
+      </p>
+      
+      <!-- Metadata Row -->
+      <div class="cs-meta-grid">
+        <div class="cs-meta-item">
+          <span class="cs-meta-label">ROLE</span>
+          <span class="cs-meta-value">Product Design / Art Direction</span>
+        </div>
+        <div class="cs-meta-item">
+          <span class="cs-meta-label">TYPE</span>
+          <span class="cs-meta-value">Interactive Commerce Experience</span>
+        </div>
+        <div class="cs-meta-item">
+          <span class="cs-meta-label">FOCUS</span>
+          <span class="cs-meta-value">Product Discovery / Interaction</span>
+        </div>
+      </div>
+      
+      <!-- Primary Hero Visual -->
+      <div class="cs-media-hero">
+        <img src="assets/images/projects/aerform/aerform_hero.png" alt="AERFORM Hero Section showcasing dynamic athletic performance and brand tagline" width="941" height="480" loading="eager">
+      </div>
+    </section>
+
+    <!-- 01 / CONCEPT -->
+    <section class="cs-section">
+      <div class="cs-section-header">
+        <span class="cs-section-number">01 / Concept</span>
+        <h2 class="cs-section-title">PRODUCT DISCOVERY SHOULD FEEL LIKE MOVEMENT.</h2>
+      </div>
+      <p class="cs-lead-text">
+        Traditional ecommerce grids often flatten performance products into static catalog items. AERFORM explores a more expressive way to browse performance footwear by combining movement-led art direction with clear product discovery.
+      </p>
+
+      <div class="cs-hook-quote">
+        <div class="cs-hook-quote-title">ENERGY IN MOTION, CLARITY IN SELECTION.</div>
+        <p class="cs-hook-quote-body">
+          High-performance footwear is chosen for how it responds during intense physical exertion. The digital storefront should convey that kinetic sensation without making browsing cumbersome or confusing.
+        </p>
+      </div>
+    </section>
+
+    <!-- 02 / EXPERIENCE -->
+    <section class="cs-section">
+      <div class="cs-section-header">
+        <span class="cs-section-number">02 / Experience</span>
+        <h2 class="cs-section-title">BUILT AROUND HOW PEOPLE EXPLORE.</h2>
+      </div>
+      <p class="cs-lead-text">
+        The experience flow connects athletic intent directly to technical shoe anatomy through structured progression.
+      </p>
+
+      <!-- Flow Pipeline -->
+      <div class="cs-flow-strip">
+        <span class="cs-flow-pill">Discover</span>
+        <span class="cs-flow-arrow">→</span>
+        <span class="cs-flow-pill">Explore</span>
+        <span class="cs-flow-arrow">→</span>
+        <span class="cs-flow-pill">Compare</span>
+        <span class="cs-flow-arrow">→</span>
+        <span class="cs-flow-pill">Select</span>
+        <span class="cs-flow-arrow">→</span>
+        <span class="cs-flow-pill">Product Detail</span>
+      </div>
+
+      <!-- 1. Large Discovery Grid Screen -->
+      <div class="cs-media-hero" style="margin-bottom: 0; box-shadow: 0 4px 20px rgba(0,0,0,0.06);">
+        <img src="assets/images/projects/aerform/aerform_discovery.png" alt="AERFORM Interactive Product Discovery Grid and Filtering System" width="941" height="330" loading="lazy">
+      </div>
+
+      <!-- 2. Supporting Paired Product Models -->
+      <div class="cs-media-grid-pair">
+        <div class="cs-product-card-preview">
+          <img src="assets/images/projects/aerform/pulse.jpg" alt="AERFORM Pulse road runner shoe detail" width="768" height="512" loading="lazy">
+          <div class="cs-product-info">
+            <div class="cs-product-name">AERFORM Pulse · $180</div>
+            <div class="cs-product-sub">Energy Return Road Runner · 4 Colors</div>
+          </div>
+        </div>
+
+        <div class="cs-product-card-preview">
+          <img src="assets/images/projects/aerform/vortex.jpg" alt="AERFORM Vortex maximum cushion stability shoe detail" width="768" height="512" loading="lazy">
+          <div class="cs-product-info">
+            <div class="cs-product-name">AERFORM Vortex · $210</div>
+            <div class="cs-product-sub">Maximum Cushion Stability · 3 Colors</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 03 / DECISIONS -->
+    <section class="cs-section">
+      <div class="cs-section-header">
+        <span class="cs-section-number">03 / Decisions</span>
+        <h2 class="cs-section-title">THREE DECISIONS SHAPED THE EXPERIENCE.</h2>
+      </div>
+
+      <div class="cs-decisions-grid">
+        <div class="cs-decision-item">
+          <h3 class="cs-decision-title">01 — Movement over static presentation</h3>
+          <p class="cs-decision-text">
+            Dynamic visual energy and active athletic imagery establish performance intent immediately rather than waiting for a secondary video tab.
+          </p>
+        </div>
+
+        <div class="cs-decision-item">
+          <h3 class="cs-decision-title">02 — Product clarity over visual noise</h3>
+          <p class="cs-decision-text">
+            Clean category pills, high-contrast silhouettes, and transparent price tags ensure shoppers can quickly filter by activity.
+          </p>
+        </div>
+
+        <div class="cs-decision-item">
+          <h3 class="cs-decision-title">03 — Editorial energy without hurting commerce usability</h3>
+          <p class="cs-decision-text">
+            Expressive hero typography and asymmetrical layouts balance with standard ecommerce affordances: clear size pickers, quick add, and immediate availability.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 04 / ART DIRECTION -->
+    <section class="cs-section">
+      <div class="cs-section-header">
+        <span class="cs-section-number">04 / Art Direction</span>
+        <h2 class="cs-section-title">MOTION WITHOUT CHAOS.</h2>
+      </div>
+      <p class="cs-lead-text">
+        The aesthetic balances high-velocity sports photography with light, architectural interface discipline:
+      </p>
+
+      <!-- Paired Performance Photography Proof -->
+      <div class="cs-media-grid-pair" style="margin-top: 20px; margin-bottom: 28px;">
+        <div style="border-radius: 18px; overflow: hidden; box-shadow: var(--shadow-sm); border: 1px solid var(--border-subtle);">
+          <img src="assets/images/projects/aerform/running.jpg" alt="Running discipline performance in motion" width="1024" height="683" style="width: 100%; aspect-ratio: 16 / 10; object-fit: cover; display: block;" loading="lazy">
+        </div>
+        <div style="border-radius: 18px; overflow: hidden; box-shadow: var(--shadow-sm); border: 1px solid var(--border-subtle);">
+          <img src="assets/images/projects/aerform/basketball.jpg" alt="Basketball agility mid-jump" width="1024" height="683" style="width: 100%; aspect-ratio: 16 / 10; object-fit: cover; display: block;" loading="lazy">
+        </div>
+      </div>
+
+      <div class="cs-points-grid">
+        <div class="cs-point-card">
+          <div class="cs-point-title">Performance Photography</div>
+          <p class="cs-point-desc">Athletes captured mid-stride to emphasize shoe flexibility and impact absorption.</p>
+        </div>
+        <div class="cs-point-card">
+          <div class="cs-point-title">Strong Scale Contrast</div>
+          <p class="cs-point-desc">Hero typography scales boldly while utility elements remain tightly controlled.</p>
+        </div>
+        <div class="cs-point-card">
+          <div class="cs-point-title">Directional Compositions</div>
+          <p class="cs-point-desc">Diagonal postures and gaze vectors naturally lead eyes toward callouts.</p>
+        </div>
+        <div class="cs-point-card">
+          <div class="cs-point-title">Restrained Chrome</div>
+          <p class="cs-point-desc">Minimal button borders and crisp white framing let footwear colors lead.</p>
+        </div>
+        <div class="cs-point-card">
+          <div class="cs-point-title">Clear Hierarchy</div>
+          <p class="cs-point-desc">Categorization by discipline: Running, Basketball, Training, and Lifestyle.</p>
+        </div>
+        <div class="cs-point-card">
+          <div class="cs-point-title">Energetic Readability</div>
+          <p class="cs-point-desc">High-contrast sans-serif typefaces engineered for quick scannability on small screens.</p>
+        </div>
+      </div>
+
+      <!-- Full Category Art Direction Screen -->
+      <div class="cs-media-hero" style="margin-top: 32px; margin-bottom: 0;">
+        <img src="assets/images/projects/aerform/aerform_categories.png" alt="AERFORM Category Art Direction across Running, Basketball, Training, and Lifestyle" width="941" height="310" loading="lazy">
+      </div>
+    </section>
+
+    <!-- 05 / PRODUCT MOMENTS -->
+    <section class="cs-section">
+      <div class="cs-section-header">
+        <span class="cs-section-number">05 / Product Moments</span>
+        <h2 class="cs-section-title">ENGINEERED COMFORT &amp; DETAILS.</h2>
+      </div>
+      <p class="cs-lead-text">
+        Technical specifications are showcased through modular component blocks highlighting cushion innovation and grip architecture.
+      </p>
+
+      <!-- Main Engineering Breakdown Screen -->
+      <div class="cs-media-hero" style="margin-top: 28px; margin-bottom: 0;">
+        <img src="assets/images/projects/aerform/aerform_engineering.png" alt="AERFORM Cushioning Technology, Flex Motion, and Grip Control Breakdown" width="941" height="330" loading="lazy">
+      </div>
+
+      <!-- Supporting Technical Anatomy Cards -->
+      <div class="cs-media-grid-pair">
+        <div class="cs-product-card-preview">
+          <img src="assets/images/projects/aerform/trainer.jpg" alt="AERFORM Trainer multi-directional outsole grip" width="768" height="512" loading="lazy">
+          <div class="cs-product-info">
+            <div class="cs-product-name">Adaptive Grip &amp; Outsole Anatomy</div>
+            <div class="cs-product-sub">Multi-directional traction lugs engineered for aggressive directional cuts.</div>
+          </div>
+        </div>
+
+        <div class="cs-product-card-preview">
+          <img src="assets/images/projects/aerform/club.jpg" alt="AERFORM Club member experience" width="900" height="600" loading="lazy">
+          <div class="cs-product-info">
+            <div class="cs-product-name">AERFORM Club Community Experience</div>
+            <div class="cs-product-sub">Early drop access, runner meetups, and digital workout integration.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CLOSING & NEXT PROJECT NAVIGATION -->
+    <section class="cs-section" style="border-top: 1px solid var(--border-light); padding-bottom: 0;">
+      <div class="cs-closing-card">
+        <span class="cs-closing-tag">Closing Reflection</span>
+        <h2 class="cs-closing-title">A COMMERCE EXPERIENCE THAT MOVES WITH THE PRODUCT.</h2>
+        <p class="cs-closing-desc">
+          By anchoring every layout decision in athletic motion while preserving frictionless product selection, AERFORM demonstrates that commerce interfaces don't have to feel like monotonous spreadsheets.
+        </p>
+        
+        <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 14px; margin-top: 28px;">
+          <a href="index.html#workSection" class="btn-cta-dark" style="display: inline-flex; align-items: center; gap: 8px; background: transparent; border: 1px solid rgba(255,255,255,0.25); color: #ffffff;">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="19" y1="12" x2="5" y2="12"></line>
+              <polyline points="12 19 5 12 12 5"></polyline>
+            </svg>
+            All Projects
+          </a>
+          <a href="nomad.html" class="btn-cta-dark" style="display: inline-flex; align-items: center; gap: 8px; background: #ffffff; color: #0c0d0e;">
+            View Next Project: NOMAD
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Site Footer Section -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-inner">
+        <!-- CTA Headline -->
+        <h2 class="footer-cta-headline reveal">
+          Some things start with a simple conversation.
+        </h2>
+
+        <!-- Interactive Contact Row -->
+        <div class="footer-contact-row reveal">
+          <!-- Copy Email Button -->
+          <button class="copy-email-btn" id="copyEmailBtn" aria-label="Copy Email Address">
+            <span class="email-address">andre.analytics@gmail.com</span>
+            <span class="copy-badge" id="copyBadge">
+              <span id="copyIcon">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                  <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                </svg>
+              </span>
+              <span id="copyText">Copy</span>
+            </span>
+          </button>
+
+          <!-- Social Links -->
+          <div class="footer-social-links">
+            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="footer-social-btn">
+              Linkedin
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="7" y1="17" x2="17" y2="7"></line>
+                <polyline points="7 7 17 7 17 17"></polyline>
+              </svg>
+            </a>
+            <a href="#" target="_blank" rel="noopener noreferrer" class="footer-social-btn">
+              Resume
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="7" y1="17" x2="17" y2="7"></line>
+                <polyline points="7 7 17 7 17 17"></polyline>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Bottom Bar -->
+        <div class="footer-bottom-bar reveal">
+          <span>&copy; 2026 Andre</span>
+          <span class="footer-thanks">Thanks for visiting! 🫶</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/lenis.min.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
